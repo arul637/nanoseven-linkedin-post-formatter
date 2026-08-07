@@ -1,35 +1,92 @@
-.logo > img {
-    width: 2rem;
+/* ============================================================
+   LinkedIn Text Formatter — professional UI
+   ============================================================ */
+
+body {
+    min-height: 100vh;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    font-family: var(--font);
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+button,
+select,
+input {
+    font-family: inherit;
+}
+
+/* =============================== header =============================== */
+
+header {
+    background: #fff;
+
+    border-bottom: 1px solid var(--border);
 }
 
 .logo {
+    max-width: 72rem;
+    margin: 0 auto;
+
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 0.8rem;
 
-    padding: 1rem;
-
-    border-bottom: 1px solid black;
+    padding: 0.9rem 1.5rem;
 }
 
-/* section-1 */
+.logo > img {
+    width: 2.1rem;
+    height: 2.1rem;
+
+    object-fit: contain;
+}
+
+.logo p {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+
+    color: var(--text);
+}
+
+/* =============================== section-1 =============================== */
+
 .section-1 {
     text-align: center;
-    padding: 4rem 0 2rem;
+
+    padding: 3rem 1.5rem 2rem;
 }
 
 .section-1 h1 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+
+    color: var(--text);
 }
 
 .section-1 p {
-    color: #555;
+    max-width: 34rem;
+    margin: 0.75rem auto 0;
+
+    font-size: 1rem;
+    color: var(--text-2);
 }
 
-/* section-2 */
+/* =============================== section-2 =============================== */
+
 .section-2 {
-    padding: 1rem 0 3rem;
+    max-width: 72rem;
+    margin: 0 auto;
+
+    padding: 0.5rem 1.5rem 3rem;
 
     display: flex;
     justify-content: center;
@@ -40,16 +97,52 @@
     flex-wrap: wrap;
 }
 
+.col {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 94vw;
+}
+
+.col > .left,
+.col > .right {
+    flex: 1;
+}
+
+/* panel eyebrow label */
+.panel-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    margin-bottom: 0.7rem;
+
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+
+    color: var(--text-3);
+}
+
+.panel-label i {
+    color: var(--blue);
+}
+
 /* =============================== editor =============================== */
 
 .left {
-    border: 1px solid var(--button-bg);
-    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
 
     width: 30rem;
-    max-width: 94vw;
+    max-width: 100%;
 
     overflow: hidden;
+
+    background: var(--surface);
+
+    box-shadow: var(--shadow-md);
 
     display: flex;
     flex-direction: column;
@@ -61,89 +154,125 @@
     display: flex;
     align-items: center;
 
-    gap: 0.6rem;
+    gap: 0.4rem;
 
-    border-bottom: 1px solid var(--button-bg);
+    border-bottom: 1px solid var(--border);
 
-    padding: 0.5rem;
+    padding: 0.55rem 0.7rem;
+
+    background: var(--surface-muted);
 }
 
 .menu > button {
-    width: 2rem;
-    height: 2rem;
+    width: 2.15rem;
+    height: 2.15rem;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     cursor: pointer;
-    border: none;
+    border: 1px solid transparent;
 
-    border-radius: 0.25rem;
+    border-radius: var(--r-sm);
 
-    background-color: var(--button-bg);
+    background-color: transparent;
 
-    transition: all 0.25s;
+    color: var(--text-2);
+
+    transition: background-color 0.18s, border-color 0.18s, color 0.18s;
 }
 
 .menu > button:hover {
-    background-color: var(--button-bg-hover);
+    background-color: var(--surface);
+    border-color: var(--border);
+    color: var(--text);
+}
+
+.menu > button:active {
+    transform: translateY(1px);
+}
+
+.menu > button:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 1px;
 }
 
 .menu-btn {
     font-size: 1rem;
-    color: #333;
 }
 
 .menu-btn b {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+    font-weight: 700;
 }
 
 .menu-btn i {
-    font-size: 1.05rem;
+    font-size: 1rem;
 }
 
 .emoji {
     font-size: 1.05rem;
-    color: #333;
+}
+
+.pipe {
+    height: 1.4rem;
+
+    border-left: 1px solid var(--border-strong);
+
+    margin: 0 0.2rem;
 }
 
 #font-style {
-    height: 2rem;
-    min-width: 6.5rem;
+    height: 2.15rem;
+    min-width: 6.8rem;
+
+    margin-left: auto;
+
     cursor: pointer;
-    border: none;
 
-    background-color: var(--button-bg);
+    border: 1px solid var(--border);
+    background-color: var(--surface);
 
-    border-radius: 0.25rem;
-    padding: 0 0.35rem;
+    border-radius: var(--r-sm);
+    padding: 0 0.45rem;
 
-    transition: all 0.25s;
+    font-size: 0.85rem;
+    color: var(--text-2);
+
+    transition: border-color 0.18s, box-shadow 0.18s;
 }
 
 #font-style:hover {
-    background-color: var(--button-bg-hover);
+    border-color: var(--border-strong);
 }
 
-/* emoji picker popup */
+#font-style:focus-visible {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* --- emoji picker popup --- */
+
 .emoji-pop {
     position: absolute;
-    top: calc(100% + 0.4rem);
+    top: calc(100% + 0.45rem);
     left: 0;
 
     width: 21rem;
-    max-width: 92vw;
+    max-width: 94vw;
 
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
+    background-color: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
 
     padding: 0.6rem;
 
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+    box-shadow: var(--shadow-lg);
 
-    z-index: 20;
+    z-index: 40;
 
     display: none;
 }
@@ -156,20 +285,24 @@
 .emoji-search input {
     width: 100%;
 
-    border: 1px solid #ddd;
-    background-color: #f3f2ef;
-    border-radius: 0.35rem;
+    border: 1px solid var(--border);
+    background-color: var(--surface-muted);
+    border-radius: var(--r-sm);
 
-    padding: 0.4rem 0.6rem;
+    padding: 0.42rem 0.65rem;
 
     font-size: 0.85rem;
+    color: var(--text);
 
     outline: none;
+
+    transition: border-color 0.18s, box-shadow 0.18s, background-color 0.18s;
 }
 
 .emoji-search input:focus {
     border-color: var(--blue);
-    background-color: #fff;
+    background-color: var(--surface);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 .emoji-pop-body {
@@ -180,12 +313,14 @@
 }
 
 .emoji-pop-body h4 {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #999;
+    letter-spacing: 0.06em;
 
-    margin: 0.5rem 0.15rem 0.25rem;
+    color: var(--text-3);
+
+    margin: 0.55rem 0.2rem 0.3rem;
 }
 
 .emoji-pop-body h4:first-child {
@@ -193,9 +328,10 @@
 }
 
 .emoji-none {
-    color: #999;
+    color: var(--text-3);
     font-size: 0.85rem;
     text-align: center;
+
     padding: 1rem 0;
 }
 
@@ -212,30 +348,35 @@
     border: none;
     background: none;
 
-    border-radius: 0.3rem;
+    border-radius: 0.35rem;
 
     padding: 0.2rem 0;
 
     cursor: pointer;
 
-    transition: background-color 0.15s;
+    transition: background-color 0.15s, transform 0.15s;
 }
 
 .emoji-grid button:hover {
-    background-color: #f0f0f0;
+    background-color: var(--blue-soft);
+    transform: scale(1.08);
 }
+
+/* --- editor hint / textarea / copy --- */
 
 .editor-hint {
     text-align: center;
-    font-size: 0.8rem;
-    color: #888;
 
-    padding: 0.5rem 0 0;
+    font-size: 0.8rem;
+    color: var(--text-3);
+
+    padding: 0.7rem 1rem 0.15rem;
 }
 
 .editor-section {
     flex: 1;
     min-height: 12rem;
+
     padding: 0.75rem;
 }
 
@@ -243,21 +384,31 @@
     width: 100%;
     height: 100%;
 
-    border: 1px solid var(--button-bg);
-    border-radius: 0.35rem;
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
 
-    padding: 0.5rem;
+    padding: 0.7rem;
 
     resize: none;
 
     outline: none;
 
     font-size: 1rem;
-    line-height: 1.5;
+    line-height: 1.55;
+    color: var(--text);
+
+    background: var(--surface);
+
+    transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+#editor::placeholder {
+    color: var(--text-3);
 }
 
 #editor:focus {
     border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 .copy-selection {
@@ -265,52 +416,66 @@
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 0.75rem 0.75rem;
+    gap: 1rem;
+
+    padding: 0.5rem 0.75rem 0.85rem;
 }
 
 .char-count {
-    font-size: 0.8rem;
-    color: #888;
+    font-size: 0.78rem;
+    font-weight: 600;
+
+    color: var(--text-3);
 }
 
 .cpy-btn {
     border: none;
+
     background-color: var(--blue);
-    color: white;
-    border-radius: 0.25rem;
-    padding: 0.4rem 0.9rem;
+    color: #fff;
+
+    border-radius: var(--r-sm);
+
+    padding: 0.45rem 1rem;
 
     cursor: pointer;
 
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
 
-    transition: all 0.25s;
+    box-shadow: 0 1px 2px rgba(37, 99, 235, 0.4);
+
+    transition: background-color 0.18s, box-shadow 0.18s, transform 0.18s;
 }
 
 .cpy-btn:hover {
-    background-color: var(--blue-light);
+    background-color: var(--blue-hover);
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.4);
+}
+
+.cpy-btn:active {
+    transform: translateY(1px);
 }
 
 .cpy-btn:disabled {
-    background-color: var(--button-bg);
+    background-color: var(--border-strong);
+    color: #fff;
+
+    box-shadow: none;
     cursor: not-allowed;
 }
 
-.pipe {
-    height: 1.5rem;
-    border-left: 1px solid var(--button-bg);
-}
-
-/* =========================== linkedin preview =========================== */
+/* =============================== linkedin preview =============================== */
 
 .right {
-    width: 32rem;
-    max-width: 94vw;
+    width: 33rem;
+    max-width: 100%;
 
     background-color: #f3f2ef;
 
     border: 1px solid #e6e4df;
-    border-radius: 0.5rem;
+    border-radius: var(--r-lg);
 
     padding: 1.5rem;
 
@@ -322,13 +487,15 @@
     background-color: #fff;
 
     border: 1px solid #e0e0e0;
-    border-radius: 0.5rem;
+    border-radius: var(--r-md);
 
     overflow: hidden;
 
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         Helvetica, Arial, sans-serif;
     color: #191919;
+
+    box-shadow: var(--shadow-sm);
 
     flex: 1;
     display: flex;
@@ -430,12 +597,14 @@
 
     cursor: pointer;
 
-    padding: 0.55rem 0.35rem;
-    border-radius: 0.3rem;
+    padding: 0.55rem 0.4rem;
+    border-radius: 0.35rem;
 
     font-size: 0.85rem;
     font-weight: 600;
     color: #666;
+
+    transition: background-color 0.15s, color 0.15s;
 }
 
 .li-action:hover {
@@ -505,7 +674,7 @@
 .li-comment input {
     flex: 1;
 
-    border: none;
+    border: 1px solid transparent;
     background-color: #f3f2ef;
 
     border-radius: 2rem;
@@ -513,11 +682,25 @@
     padding: 0.5rem 0.9rem;
 
     font-size: 0.85rem;
+    color: #191919;
 
     outline: none;
+
+    transition: border-color 0.15s, background-color 0.15s;
 }
 
 .li-comment input:focus {
-    border: 1px solid var(--blue);
+    border-color: var(--blue);
     background-color: #fff;
+}
+
+/* =============================== footer =============================== */
+
+.footer {
+    text-align: center;
+
+    padding: 0 1.5rem 2.5rem;
+
+    color: var(--text-3);
+    font-size: 0.82rem;
 }

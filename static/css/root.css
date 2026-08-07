@@ -1,18 +1,47 @@
+:root {
+    /* brand */
+    --blue: #2563eb;
+    --blue-hover: #1d4ed8;
+    --blue-soft: #eff6ff;
+
+    /* surfaces */
+    --bg: #f1f5f9;
+    --surface: #ffffff;
+    --surface-muted: #f8fafc;
+
+    /* text */
+    --text: #0f172a;
+    --text-2: #475569;
+    --text-3: #94a3b8;
+
+    /* lines & controls */
+    --border: #e2e8f0;
+    --border-strong: #cbd5e1;
+
+    /* feedback */
+    --success: #16a34a;
+
+    /* shadows */
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08),
+                 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.1),
+                 0 4px 6px -4px rgba(15, 23, 42, 0.05);
+
+    /* radius */
+    --r-sm: 6px;
+    --r-md: 10px;
+    --r-lg: 14px;
+
+    /* type */
+    --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 
-    font-family: sans-serif;
-}
-
-:root {
-    --blue: #2463EB;
-    --blue-light: #497eef;
-
-
-    /* --button-bg: #F0F0F0;
-    --button-bg-hover: #c7c7c7; */
-    --button-bg: #c7c7c7;
-    --button-bg-hover: #F0F0F0;
+    font-family: var(--font);
 }

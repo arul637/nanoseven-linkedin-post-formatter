@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/root.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <title>linkedin formatter</title>
+    <title>LinkedIn Text Formatter</title>
 </head>
 <body>
 
@@ -26,6 +30,8 @@
 
     <section class="section-2">
         <!-- ============ editor ============ -->
+        <div class="col">
+            <div class="panel-label"><i class="fa-solid fa-pen-nib"></i> Editor</div>
         <div class="left">
             <div class="menu">
                 <button type="button" class="menu-btn" id="bold-btn" title="Bold" aria-label="Bold">
@@ -71,8 +77,11 @@
                 <button type="button" class="cpy-btn" id="copy-btn">copy text</button>
             </div>
         </div>
+        </div>
 
         <!-- ============ linkedin preview ============ -->
+        <div class="col">
+            <div class="panel-label"><i class="fa-brands fa-linkedin"></i> LinkedIn preview</div>
         <div class="right">
             <div class="li-card">
                 <div class="li-header">
@@ -120,7 +129,12 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
+
+    <footer class="footer">
+        <p>nanoseven &middot; LinkedIn Text Formatter</p>
+    </footer>
 
     <script>
         (function () {
