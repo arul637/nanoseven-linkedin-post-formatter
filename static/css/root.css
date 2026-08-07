@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: sans-serif;
+}
+
+:root {
+    --blue: #2463EB;
+    --blue-light: #497eef;
+
+
+    /* --button-bg: #F0F0F0;
+    --button-bg-hover: #c7c7c7; */
+    --button-bg: #c7c7c7;
+    --button-bg-hover: #F0F0F0;
+}

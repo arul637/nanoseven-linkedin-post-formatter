@@ -1,0 +1,523 @@
+.logo > img {
+    width: 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    padding: 1rem;
+
+    border-bottom: 1px solid black;
+}
+
+/* section-1 */
+.section-1 {
+    text-align: center;
+    padding: 4rem 0 2rem;
+}
+
+.section-1 h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-1 p {
+    color: #555;
+}
+
+/* section-2 */
+.section-2 {
+    padding: 1rem 0 3rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+
+    gap: 1.5rem;
+
+    flex-wrap: wrap;
+}
+
+/* =============================== editor =============================== */
+
+.left {
+    border: 1px solid var(--button-bg);
+    border-radius: 0.5rem;
+
+    width: 30rem;
+    max-width: 94vw;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.menu {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 0.6rem;
+
+    border-bottom: 1px solid var(--button-bg);
+
+    padding: 0.5rem;
+}
+
+.menu > button {
+    width: 2rem;
+    height: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    border: none;
+
+    border-radius: 0.25rem;
+
+    background-color: var(--button-bg);
+
+    transition: all 0.25s;
+}
+
+.menu > button:hover {
+    background-color: var(--button-bg-hover);
+}
+
+.menu-btn {
+    font-size: 1rem;
+    color: #333;
+}
+
+.menu-btn b {
+    font-size: 1.1rem;
+}
+
+.menu-btn i {
+    font-size: 1.05rem;
+}
+
+.emoji {
+    font-size: 1.05rem;
+    color: #333;
+}
+
+#font-style {
+    height: 2rem;
+    min-width: 6.5rem;
+    cursor: pointer;
+    border: none;
+
+    background-color: var(--button-bg);
+
+    border-radius: 0.25rem;
+    padding: 0 0.35rem;
+
+    transition: all 0.25s;
+}
+
+#font-style:hover {
+    background-color: var(--button-bg-hover);
+}
+
+/* emoji picker popup */
+.emoji-pop {
+    position: absolute;
+    top: calc(100% + 0.4rem);
+    left: 0;
+
+    width: 21rem;
+    max-width: 92vw;
+
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+
+    padding: 0.6rem;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+
+    z-index: 20;
+
+    display: none;
+}
+
+.emoji-pop.open {
+    display: flex;
+    flex-direction: column;
+}
+
+.emoji-search input {
+    width: 100%;
+
+    border: 1px solid #ddd;
+    background-color: #f3f2ef;
+    border-radius: 0.35rem;
+
+    padding: 0.4rem 0.6rem;
+
+    font-size: 0.85rem;
+
+    outline: none;
+}
+
+.emoji-search input:focus {
+    border-color: var(--blue);
+    background-color: #fff;
+}
+
+.emoji-pop-body {
+    margin-top: 0.5rem;
+
+    max-height: 15rem;
+    overflow-y: auto;
+}
+
+.emoji-pop-body h4 {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #999;
+
+    margin: 0.5rem 0.15rem 0.25rem;
+}
+
+.emoji-pop-body h4:first-child {
+    margin-top: 0;
+}
+
+.emoji-none {
+    color: #999;
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.emoji-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 0.1rem;
+}
+
+.emoji-grid button {
+    font-size: 1.15rem;
+    line-height: 1.3;
+
+    border: none;
+    background: none;
+
+    border-radius: 0.3rem;
+
+    padding: 0.2rem 0;
+
+    cursor: pointer;
+
+    transition: background-color 0.15s;
+}
+
+.emoji-grid button:hover {
+    background-color: #f0f0f0;
+}
+
+.editor-hint {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #888;
+
+    padding: 0.5rem 0 0;
+}
+
+.editor-section {
+    flex: 1;
+    min-height: 12rem;
+    padding: 0.75rem;
+}
+
+#editor {
+    width: 100%;
+    height: 100%;
+
+    border: 1px solid var(--button-bg);
+    border-radius: 0.35rem;
+
+    padding: 0.5rem;
+
+    resize: none;
+
+    outline: none;
+
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+#editor:focus {
+    border-color: var(--blue);
+}
+
+.copy-selection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 0.75rem 0.75rem;
+}
+
+.char-count {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.cpy-btn {
+    border: none;
+    background-color: var(--blue);
+    color: white;
+    border-radius: 0.25rem;
+    padding: 0.4rem 0.9rem;
+
+    cursor: pointer;
+
+    font-size: 0.9rem;
+
+    transition: all 0.25s;
+}
+
+.cpy-btn:hover {
+    background-color: var(--blue-light);
+}
+
+.cpy-btn:disabled {
+    background-color: var(--button-bg);
+    cursor: not-allowed;
+}
+
+.pipe {
+    height: 1.5rem;
+    border-left: 1px solid var(--button-bg);
+}
+
+/* =========================== linkedin preview =========================== */
+
+.right {
+    width: 32rem;
+    max-width: 94vw;
+
+    background-color: #f3f2ef;
+
+    border: 1px solid #e6e4df;
+    border-radius: 0.5rem;
+
+    padding: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.li-card {
+    background-color: #fff;
+
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+
+    overflow: hidden;
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif;
+    color: #191919;
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.li-header {
+    display: flex;
+    align-items: center;
+
+    gap: 0.75rem;
+
+    padding: 0.9rem 1rem 0.4rem;
+}
+
+.li-avatar {
+    width: 3rem;
+    height: 3rem;
+
+    border-radius: 50%;
+
+    padding: 0.45rem;
+
+    background-color: #fff;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
+}
+
+.li-avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.li-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    margin: 0;
+}
+
+.li-sub {
+    font-size: 0.78rem;
+    color: #666;
+
+    margin: 0;
+}
+
+.li-body {
+    min-height: 5rem;
+    flex: 1;
+
+    padding: 0.6rem 1rem 0.9rem;
+
+    font-size: 0.95rem;
+    line-height: 1.45;
+
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+}
+
+.li-hashtag,
+.li-mention {
+    color: #0a66c2;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.li-placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+.li-divider {
+    border-top: 1px solid #e0e0e0;
+    margin: 0 1rem;
+}
+
+.li-actions {
+    display: flex;
+    justify-content: space-around;
+
+    padding: 0.25rem 0.5rem;
+}
+
+.li-action {
+    display: flex;
+    align-items: center;
+
+    gap: 0.45rem;
+
+    border: none;
+    background: none;
+
+    cursor: pointer;
+
+    padding: 0.55rem 0.35rem;
+    border-radius: 0.3rem;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #666;
+}
+
+.li-action:hover {
+    background-color: #f3f2ef;
+}
+
+.li-action.liked {
+    color: #0a66c2;
+}
+
+.li-action i {
+    font-size: 1rem;
+}
+
+.li-stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0.4rem 1rem;
+
+    font-size: 0.75rem;
+    color: #666;
+
+    border-top: 1px solid #e0e0e0;
+}
+
+.li-stat {
+    display: flex;
+    align-items: center;
+
+    gap: 0.35rem;
+}
+
+.li-comment {
+    display: flex;
+    align-items: center;
+
+    gap: 0.6rem;
+
+    padding: 0.7rem 1rem 1rem;
+}
+
+.li-avatar-sm {
+    width: 2.1rem;
+    height: 2.1rem;
+
+    border-radius: 50%;
+
+    padding: 0.32rem;
+
+    background-color: #fff;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
+}
+
+.li-avatar-sm img {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.li-comment input {
+    flex: 1;
+
+    border: none;
+    background-color: #f3f2ef;
+
+    border-radius: 2rem;
+
+    padding: 0.5rem 0.9rem;
+
+    font-size: 0.85rem;
+
+    outline: none;
+}
+
+.li-comment input:focus {
+    border: 1px solid var(--blue);
+    background-color: #fff;
+}

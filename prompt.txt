@@ -1,0 +1,5 @@
+1. i have selected particular line and given a style, after selecting same line and click the bold button the font still remain same i need to bold when i click the bold, when i click italic after the selected style need to replace only the particular portion italic 
+
+2. the style only happens once second time the style is not applying fix this bug moveover the style is happening once need to handle multiple time selected portion need to handle
+
+3. profile icon still overflowed my profile icon is N i am getting when it rounded the N in circle the edge are missing handle this use div and use padding to make center alignment after use border-radius 50% 
