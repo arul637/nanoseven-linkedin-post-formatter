@@ -49,7 +49,36 @@
 
                 <span class="pipe"></span>
 
-                <select name="font-style" id="font-style" title="Pick a Unicode style">
+                <button type="button" class="menu-btn" id="olist-btn" title="Numbered list (1. 2. 3.)" aria-label="Numbered list">
+                    <i class="fa-solid fa-list-ol"></i>
+                </button>
+
+                <span class="ulist-wrap">
+                    <button type="button" class="menu-btn" id="ulist-btn" title="Bulleted list" aria-label="Bulleted list">
+                        <i class="fa-solid fa-list-ul"></i>
+                    </button>
+                    <div class="list-pop" id="list-pop">
+                        <button type="button" data-marker="•" title="Disc bullet"><span class="bullet-swatch">•</span> Disc</button>
+                        <button type="button" data-marker="▪" title="Square bullet"><span class="bullet-swatch">▪</span> Square</button>
+                        <button type="button" data-marker="○" title="Circle bullet"><span class="bullet-swatch">○</span> Circle</button>
+                    </div>
+                </span>
+
+                <span class="pipe"></span>
+
+                <select name="divider" id="divider" title="Insert a divider" class="selector">
+                    <option value="" disabled selected>divider</option>
+                    <option value="solid">──────────────</option>
+                    <option value="heavy">━━━━━━━━━━━━━━━━</option>
+                    <option value="double">══════════════════</option>
+                    <option value="dashed">――――――――――――――――</option>
+                    <option value="dotted">┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄</option>
+                    <option value="dots">• • • • • • • • •</option>
+                    <option value="wave">〰〰〰〰〰〰〰〰〰〰〰</option>
+                    <option value="star">───── ✦ ─────</option>
+                </select>
+
+                <select name="font-style" id="font-style" title="Pick a Unicode style" class="selector">
                     <option value="" disabled selected>font style</option>
                     {% for b in buttons %}
                     <option value="{{ b.key }}">{{ b.label }}</option>
@@ -531,6 +560,160 @@
                 document.body.removeChild(ta);
                 return ok;
             }
+
+            /* ---------------- dividers & lists ---------------- */
+
+            const dividerSelect = document.getElementById("divider");
+            const olistBtn = document.getElementById("olist-btn");
+            const ulistBtn = document.getElementById("ulist-btn");
+            const listPop = document.getElementById("list-pop");
+
+            const DIVIDERS = {
+                solid: "──────────────",
+                heavy: "━━━━━━━━━━━━━━━━",
+                double: "══════════════════",
+                dashed: "――――――――――――――――",
+                dotted: "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄",
+                dots: "• • • • • • • • •",
+                wave: "〰〰〰〰〰〰〰〰〰〰〰",
+                star: "───── ✦ ─────"
+            };
+
+            function insertDivider(chars) {
+                const text = editor.value;
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                const before = start > 0 && text[start - 1] !== "\n" ? "\n" : "";
+                const after = end < text.length && text[end] !== "\n" ? "\n" : "";
+                const ins = before + chars + after;
+                editor.value = text.slice(0, start) + ins + text.slice(end);
+                editor.selectionStart = editor.selectionEnd = start + ins.length;
+                editor.focus();
+                updatePreview();
+            }
+
+            dividerSelect.addEventListener("change", function () {
+                const key = dividerSelect.value;
+                dividerSelect.value = "";
+                if (!key || !DIVIDERS[key]) return;
+                insertDivider(DIVIDERS[key]);
+            });
+
+            /* ---------------- lists ---------------- */
+
+            const LIST_MARKER_RE = /^(\s*)([•▪■○●›·]|\d+[.)])(\s?)/;
+
+            function numberedMarker() {
+                // continue numbering from the previous line when it's an ordered list
+                const text = editor.value;
+                const pos = editor.selectionStart;
+                const lineStart = text.lastIndexOf("\n", pos - 1) + 1;
+                if (lineStart === 0) return "1. ";
+                const prevLineEnd = lineStart - 1;
+                const prevLineStart = text.lastIndexOf("\n", prevLineEnd - 1) + 1;
+                const m = text.slice(prevLineStart, prevLineEnd).match(/^(\d+)[.)]\s/);
+                return (m ? parseInt(m[1], 10) + 1 : 1) + ". ";
+            }
+
+            function addMarker(line, marker) {
+                const m = line.match(/^(\s*)(?:[•▪■○●›·]|\d+[.)])(\s?)/);
+                if (m) {
+                    // line already in a list: swap its marker for the new one
+                    return m[1] + marker + line.slice(m[0].length);
+                }
+                return line === "" ? marker : marker + line;
+            }
+
+            function applyListMarker(marker) {
+                const text = editor.value;
+                const selStart = editor.selectionStart;
+                const selEnd = editor.selectionEnd;
+                const lineStart = text.lastIndexOf("\n", selStart - 1) + 1;
+                let lineEnd = text.indexOf("\n", selEnd);
+                if (lineEnd === -1) lineEnd = text.length;
+                const block = text.slice(lineStart, lineEnd);
+                const newBlock = block.split("\n").map(function (l) {
+                    return addMarker(l, marker);
+                }).join("\n");
+                editor.value = text.slice(0, lineStart) + newBlock + text.slice(lineEnd);
+                const cursor = lineEnd - (block.length - newBlock.length);
+                editor.selectionStart = editor.selectionEnd = cursor;
+                editor.focus();
+                updatePreview();
+            }
+
+            olistBtn.addEventListener("click", function () {
+                applyListMarker(numberedMarker());
+            });
+
+            ulistBtn.addEventListener("click", function (e) {
+                e.stopPropagation();
+                listPop.classList.toggle("open");
+            });
+
+            listPop.addEventListener("click", function (e) {
+                const btn = e.target.closest("button[data-marker]");
+                if (!btn) return;
+                applyListMarker(btn.dataset.marker + " ");
+                listPop.classList.remove("open");
+            });
+
+            document.addEventListener("click", function (e) {
+                if (listPop.classList.contains("open") &&
+                    !listPop.contains(e.target) && e.target !== ulistBtn) {
+                    listPop.classList.remove("open");
+                }
+            });
+
+            /* ---------------- Word-like list typing ---------------- */
+
+            editor.addEventListener("keydown", function (e) {
+                // Enter on a list line continues the list (or ends it when the item is empty)
+                if (e.key === "Enter" && !e.shiftKey && editor.selectionStart === editor.selectionEnd) {
+                    const pos = editor.selectionStart;
+                    const text = editor.value;
+                    const lineStart = text.lastIndexOf("\n", pos - 1) + 1;
+                    const line = text.slice(lineStart, pos);
+                    const m = line.match(LIST_MARKER_RE);
+                    if (m) {
+                        if (line.slice(m[0].length).trim() === "") {
+                            // empty item → end the list, leave a plain empty line
+                            e.preventDefault();
+                            editor.value = text.slice(0, lineStart) + text.slice(pos);
+                            editor.selectionStart = editor.selectionEnd = lineStart;
+                        } else {
+                            e.preventDefault();
+                            const ordered = /^\d/.test(m[2]);
+                            let next;
+                            if (ordered) {
+                                const suffix = m[2].endsWith(")") ? ") " : ". ";
+                                next = (parseInt(m[2], 10) + 1) + suffix;
+                            } else {
+                                next = m[2] + " ";
+                            }
+                            const ins = "\n" + m[1] + next;
+                            editor.value = text.slice(0, pos) + ins + text.slice(pos);
+                            editor.selectionStart = editor.selectionEnd = pos + ins.length;
+                        }
+                        updatePreview();
+                        return;
+                    }
+                }
+
+                // Backspace on a bare list marker removes the whole marker
+                if (e.key === "Backspace" && editor.selectionStart === editor.selectionEnd) {
+                    const pos = editor.selectionStart;
+                    const text = editor.value;
+                    const lineStart = text.lastIndexOf("\n", pos - 1) + 1;
+                    const line = text.slice(lineStart, pos);
+                    if (/^\s*([•▪■○●›·]|\d+[.)])\s?$/.test(line)) {
+                        e.preventDefault();
+                        editor.value = text.slice(0, lineStart) + text.slice(pos);
+                        editor.selectionStart = editor.selectionEnd = lineStart;
+                        updatePreview();
+                    }
+                }
+            });
 
             /* ---------------- init ---------------- */
 
