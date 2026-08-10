@@ -28,10 +28,10 @@ class UnicodeStyle:
                 result.append(chr(self.SPECIAL[ch]))
 
             elif "A" <= ch <= "Z":
-                result.append(chr(self.UPPER_START + ord(ch) - ord("A")))
+                result.append(chr(self.UPPER_START + ord(ch) - ord("A"))) # type: ignore
 
             elif "a" <= ch <= "z":
-                result.append(chr(self.LOWER_START + ord(ch) - ord("a")))
+                result.append(chr(self.LOWER_START + ord(ch) - ord("a"))) # type: ignore
 
             elif self.DIGIT_START is not None and "0" <= ch <= "9":
                 result.append(chr(self.DIGIT_START + ord(ch) - ord("0")))
